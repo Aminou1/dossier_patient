@@ -1,0 +1,101 @@
+{% extends 'layout_main.html.twig' %}
+
+   {% block content %}
+<section class="content-header">
+<div class="container-fluid">
+    <div class="row">
+    <!-- left column -->
+    <div class="col-12">
+              <div class="card card-gray">
+                {% if action == 'create' %}
+                <div class="card-header">
+                   <h3 >Nouveau <small>structure</small></h3>
+                   </div>
+                {% endif %}
+                {% if action == 'edit' %}
+                <div class="card-header">
+                  <h3>Modifier la structure </h3>
+                </div>
+                {% endif %}
+              </div>
+
+            <div class="row">
+                <div class="col-12">
+                    <div class="card-body">
+                            {{ form_start(form, {'attr': {'id': 'field_form'}}) }}
+                            {{ form_errors(form) }}
+                            <div class="card-body">
+                            <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                        {{ form_label(form.nomStructure, "Nom Structure", {'label_attr': {'class': 'form-label'}}) }}
+                                        {{ form_widget(form.nomStructure, {'attr': {'class': 'form-control' } }) }}
+                                        {{ form_errors(form.nomStructure) }}
+                                    </div> 
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        {{ form_label(form.description, "Description", {'label_attr': {'class': 'form-label'}}) }}
+                                        {{ form_widget(form.description, {'attr': {'class': 'form-control', 'type': 'password' } }) }}
+                                        {{ form_errors(form.description) }}
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+
+                                 <div class="col-md-6">
+                                <div class="form-group">
+                                    {{ form_label(form.addresseStructure, "Addresse", {'label_attr': {'class': 'form-label'}}) }}
+                                    {{ form_widget(form.addresseStructure, {'attr': {'class': 'form-control' } }) }}
+                                    {{ form_errors(form.addresseStructure) }}
+                                    </div>
+                                </div>
+
+                                 <div class="col-md-6">
+                                    <div class="form-group">
+                                        {{ form_label(form.contact, "Numéro de téléphone", {'label_attr': {'class': 'form-label'}}) }}
+                                        {{ form_widget(form.contact, {'attr': {'class': 'form-control', 'type': 'password' } }) }}
+                                        {{ form_errors(form.contact) }}
+                                    </div>
+                                </div>
+                            </div>
+    
+                        </div>
+                        <div class="card-footer">
+                            <button type="submit"
+                            class="btn btn-sm btn-success float-right toastrDefaultSuccess">
+                                <i class="fa fa-save"></i>
+                                Sauvegarder</button>
+                            <button type="button" class="btn btn-sm btn-default float-right mr-1 back" onclick='location.href="{{path('listestructure') }}"'>
+                                <i class ="fa fa-ban"></i>Annuler</button>  
+                            {{ form_rest(form) }}
+                        {{ form_end(form) }}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</section>
+    {% endblock %}
+{% block autresFichiersJs %}
+<!-- jQuery -->
+<script src="{{ asset('plugins/jquery/jquery.min.js') }}"></script>
+<!-- Bootstrap 4 -->
+<script src="{{ asset('plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+<!-- AdminLTE App -->
+<script src="{{ asset('dist/js/adminlte.min.js') }}"></script>
+<!-- AdminLTE for demo purposes -->
+<script src="{{ asset('dist/js/demo.js') }}"></script>
+<!-- Summernote -->
+<script src="{{ asset('plugins/summernote/summernote-bs4.min.js') }}"></script>
+<script>
+  $(function () {
+    // Summernote
+    $('.textarea').summernote()
+  })
+</script>
+
+
+{% endblock %}

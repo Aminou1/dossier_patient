@@ -1,0 +1,381 @@
+{% extends 'layout_main.html.twig' %}
+{% block content %}
+<section class="content-header">
+    <div class="row">
+		
+			<div class="col-lg-3 col-6">
+			  <!-- small box -->
+			  <div class="small-box bg-info">
+				<div class="inner">
+					<h3>0 </h3>
+				  <p>Montant avance</p>
+				</div>
+				<div class="icon">
+				  <!--<i class="ion ion-bag"></i>-->
+				  <i class="ion ion-stats-bars"></i>
+				</div>
+			
+			  </div>
+			</div>
+			<!-- ./col -->
+			<div class="col-lg-3 col-6">
+			  <!-- small box -->
+			  <div class="small-box bg-success">
+				<div class="inner">
+				  <!--<h3>53<sup style="font-size: 20px">%</sup></h3>-->
+				  <h3>0</h3>
+				
+  
+				  <p>Montant restant</p>
+				</div>
+				<div class="icon">
+				  <i class="ion ion-stats-bars"></i>
+				</div>
+			
+			  </div>
+			</div>
+			<!-- ./col -->
+			<div class="col-lg-3 col-6">
+			  <!-- small box -->
+			  <div class="small-box bg-warning">
+				<div class="inner">
+					<h3>0 </h3>
+				
+  
+				  <p>Montant global</p>
+				</div>
+				<div class="icon">
+				  <!--<i class="ion ion-person-add"></i>-->
+				  <i class="ion ion-stats-bars"></i>
+				</div>
+			
+			  </div>
+			</div>
+			
+			<!-- ./col -->
+			<!-- ./col -->
+		  </div>
+
+		
+		<!-- /.row -->
+		<script src="{{ asset('plugins/jquery/jquery.min.js') }}"></script>
+		<script src="{{ asset('plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+		<script src="{{ asset('plugins/chart.js/Chart.min.js') }}"></script>
+		<script src="{{ asset('dist/js/adminlte.min.js') }}"></script>
+		<script src="{{ asset('dist/js/demo.js') }}"></script>
+	
+	<!-- AdminLTE App -->
+	<!-- AdminLTE for demo purposes -->
+	<!-- page script -->
+	<script>
+		$(function () {
+	  
+		  var labels = [];
+		  var data = [];
+		  var graphe = 'areaChart';
+		  var grapheb = 'barChart';
+			var dataconsommes = [];
+		  //alert(labels);
+
+		  
+			var areaChartCanvas = $('#areaChart1').get(0).getContext('2d')
+			
+		  //var labels = ['janvier 2021','fevrier 2021','mars 2021']
+		  //var data = [800000,60000,800000];
+		  var areaChartData = {
+	  
+			
+			labels  :   labels,
+			datasets: [
+			  {
+				label               : 'Nombre de bons émis',
+				backgroundColor     : 'rgba(60,141,188,0.9)',
+				borderColor         : 'rgba(60,141,188,0.8)',
+				pointRadius          : false,
+				pointColor          : '#3b8bba',
+				pointStrokeColor    : 'rgba(60,141,188,1)',
+				pointHighlightFill  : '#fff',
+				pointHighlightStroke: 'rgba(60,141,188,1)',
+				data                : data
+			  },
+			  /*{
+				label               : 'Montant de bons emis',
+				backgroundColor     : 'rgba(210, 214, 222, 1)',
+				borderColor         : 'rgba(210, 214, 222, 1)',
+				pointRadius         : false,
+				pointColor          : 'rgba(210, 214, 222, 1)',
+				pointStrokeColor    : '#c1c7d1',
+				pointHighlightFill  : '#fff',
+				pointHighlightStroke: 'rgba(220,220,220,1)',
+				data                : dataconsommes
+			  },*/
+			]
+		  }
+	  
+		  var areaChartOptions = {
+			maintainAspectRatio : false,
+			responsive : true,
+			legend: {
+			  display: true
+			},
+			scales: {
+			  xAxes: [{
+				gridLines : {
+				  display : false,
+				}
+			  }],
+			  yAxes: [{
+				gridLines : {
+				  display : false,
+				}
+			  }]
+			}
+		  }
+	  
+		  var areaChart       = new Chart(areaChartCanvas, {
+			type: 'line',
+			data: areaChartData,
+			options: areaChartOptions
+		  })
+	  
+
+		  var areaChartCanvas = $('#areaChart2').get(0).getContext('2d')
+			
+		 
+		  //var labels = ['janvier 2021','fevrier 2021','mars 2021']
+		  //var data = [800000,60000,800000];
+		  var areaChartData = {
+	  
+			
+			labels  :   labels,
+			datasets: [
+			  {
+				label               : 'Montant de bons émis',
+				backgroundColor     : 'rgba(60,141,188,0.9)',
+				borderColor         : 'rgba(60,141,188,0.8)',
+				pointRadius          : false,
+				pointColor          : '#3b8bba',
+				pointStrokeColor    : 'rgba(60,141,188,1)',
+				pointHighlightFill  : '#fff',
+				pointHighlightStroke: 'rgba(60,141,188,1)',
+				data                : data
+			  },
+			  /*{
+				label               : 'Montant de bons emis',
+				backgroundColor     : 'rgba(210, 214, 222, 1)',
+				borderColor         : 'rgba(210, 214, 222, 1)',
+				pointRadius         : false,
+				pointColor          : 'rgba(210, 214, 222, 1)',
+				pointStrokeColor    : '#c1c7d1',
+				pointHighlightFill  : '#fff',
+				pointHighlightStroke: 'rgba(220,220,220,1)',
+				data                : dataconsommes
+			  },*/
+			]
+		  }
+	  
+		  var areaChartOptions = {
+			maintainAspectRatio : false,
+			responsive : true,
+			legend: {
+			  display: true
+			},
+			scales: {
+			  xAxes: [{
+				gridLines : {
+				  display : false,
+				}
+			  }],
+			  yAxes: [{
+				gridLines : {
+				  display : false,
+				}
+			  }]
+			}
+		  }
+	  
+		  var areaChart       = new Chart(areaChartCanvas, {
+			type: 'line',
+			data: areaChartData,
+			options: areaChartOptions
+		  })
+		  
+		  var areaChartCanvas = $('#areaChart3').get(0).getContext('2d')
+		  
+		 
+		  //var labels = ['janvier 2021','fevrier 2021','mars 2021']
+		  //var data = [800000,60000,800000];
+		  var areaChartData = {
+	  
+			
+			labels  :   labels,
+			datasets: [
+			  {
+				label               : 'Nombre de bons consommés',
+				backgroundColor     : 'rgba(60,141,188,0.9)',
+				borderColor         : 'rgba(60,141,188,0.8)',
+				pointRadius          : false,
+				pointColor          : '#3b8bba',
+				pointStrokeColor    : 'rgba(60,141,188,1)',
+				pointHighlightFill  : '#fff',
+				pointHighlightStroke: 'rgba(60,141,188,1)',
+				data                : dataconsommes
+			  },
+			  /*{
+				label               : 'Montant de bons emis',
+				backgroundColor     : 'rgba(210, 214, 222, 1)',
+				borderColor         : 'rgba(210, 214, 222, 1)',
+				pointRadius         : false,
+				pointColor          : 'rgba(210, 214, 222, 1)',
+				pointStrokeColor    : '#c1c7d1',
+				pointHighlightFill  : '#fff',
+				pointHighlightStroke: 'rgba(220,220,220,1)',
+				data                : dataconsommes
+			  },*/
+			]
+		  }
+	  
+		  var areaChartOptions = {
+			maintainAspectRatio : false,
+			responsive : true,
+			legend: {
+			  display: true
+			},
+			scales: {
+			  xAxes: [{
+				gridLines : {
+				  display : false,
+				}
+			  }],
+			  yAxes: [{
+				gridLines : {
+				  display : false,
+				}
+			  }]
+			}
+		  }
+	  
+		  var areaChart       = new Chart(areaChartCanvas, {
+			type: 'line',
+			data: areaChartData,
+			options: areaChartOptions
+		  })
+
+		  var areaChartCanvas = $('#areaChart4').get(0).getContext('2d')
+		  
+		 
+		  //var labels = ['janvier 2021','fevrier 2021','mars 2021']
+		  //var data = [800000,60000,800000];
+		  var areaChartData = {
+	  
+			
+			labels  :   labels,
+			datasets: [
+			  {
+				label               : 'Montant de bons consommés',
+				backgroundColor     : 'rgba(60,141,188,0.9)',
+				borderColor         : 'rgba(60,141,188,0.8)',
+				pointRadius          : false,
+				pointColor          : '#3b8bba',
+				pointStrokeColor    : 'rgba(60,141,188,1)',
+				pointHighlightFill  : '#fff',
+				pointHighlightStroke: 'rgba(60,141,188,1)',
+				data                : dataconsommes
+			  },
+			  /*{
+				label               : 'Montant de bons emis',
+				backgroundColor     : 'rgba(210, 214, 222, 1)',
+				borderColor         : 'rgba(210, 214, 222, 1)',
+				pointRadius         : false,
+				pointColor          : 'rgba(210, 214, 222, 1)',
+				pointStrokeColor    : '#c1c7d1',
+				pointHighlightFill  : '#fff',
+				pointHighlightStroke: 'rgba(220,220,220,1)',
+				data                : dataconsommes
+			  },*/
+			]
+		  }
+	  
+		  var areaChartOptions = {
+			maintainAspectRatio : false,
+			responsive : true,
+			legend: {
+			  display: true
+			},
+			scales: {
+			  xAxes: [{
+				gridLines : {
+				  display : false,
+				}
+			  }],
+			  yAxes: [{
+				gridLines : {
+				  display : false,
+				}
+			  }]
+			}
+		  }
+	  
+		  var areaChart       = new Chart(areaChartCanvas, {
+			type: 'line',
+			data: areaChartData,
+			options: areaChartOptions
+		  })
+
+		
+		 if(graphe =='donutChart'){
+		  var donutChartCanvas = $('#donutChart').get(0).getContext('2d')
+		  var donutData        = {
+			labels: labels,
+			datasets: [
+			  {
+				data: data,
+				backgroundColor : ['#f56954', '#00a65a'],
+			  }
+			]
+		  }
+		 
+		  var donutOptions     = {
+			maintainAspectRatio : false,
+			responsive : true,
+		  }
+		  //Create pie or douhnut chart
+		  // You can switch between pie and douhnut using the method below.
+		  var donutChart = new Chart(donutChartCanvas, {
+			type: 'doughnut',
+			data: donutData,
+			options: donutOptions
+		  })
+	  
+		  //---------------------
+		  //- STACKED BAR CHART -
+		  //---------------------
+		  var stackedBarChartCanvas = $('#stackedBarChart').get(0).getContext('2d')
+		  var stackedBarChartData = jQuery.extend(true, {}, barChartData)
+	  
+		  var stackedBarChartOptions = {
+			responsive              : true,
+			maintainAspectRatio     : false,
+			scales: {
+			  xAxes: [{
+				stacked: true,
+			  }],
+			  yAxes: [{
+				stacked: true
+			  }]
+			}
+		  }
+	  
+		  var stackedBarChart = new Chart(stackedBarChartCanvas, {
+			type: 'bar',
+			data: stackedBarChartData,
+			options: stackedBarChartOptions
+		  })
+		  }else{
+			//rien a faire
+		  }
+		  
+		})
+	  </script>
+
+  {% endblock %}

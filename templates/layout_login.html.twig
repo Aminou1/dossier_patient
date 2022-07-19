@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% block title %}Stack : Suivi de nomservice{% endblock %}</title>
+
+  <!-- Google Font: Source Sans Pro -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="{{ asset('plugins/fontawesome-free/css/all.min.css') }}">
+  <!-- icheck bootstrap -->
+  <link rel="stylesheet" href="{{ asset('plugins/icheck-bootstrap/icheck-bootstrap.min.css') }}">
+  <!-- Theme style -->
+  <link rel="stylesheet" href="{{ asset('dist/css/adminlte.min.css') }}">
+</head>
+{# <body class="hold-transition login-page" style="color: #000;
+overflow-x: hidden;
+height: 100%;
+background-color: #e9ecef;
+background-repeat: no-repeat; margin-top: 15px;">
+<div class="container-fluid px-1 px-md-5 px-lg-1 px-xl-5 py-5 mx-auto" style="width: 80%;">
+  <div class="card card0 border-0">
+    <div class="row d-flex">
+        <div class="col-lg-6 margin-left: 45px;">
+            <div class="card1 pb-5" style="background-image: url('../assets/dist/img/sante.jpg');
+            background-repeat: no-repeat;
+            background-size: 100% 100%;
+            margin-left: 5px;
+              background-position: left; margin-top: 10%;height:400px;"> #}
+              <body class="hold-transition login-page" style="color: #000;
+                      overflow-x: hidden;
+                      height: 100%;
+                      background-color: #e9ecef;
+                      background-repeat: no-repeat; margin-top: 15px;">
+                      <div class="container-fluid px-1 px-md-5 px-lg-1 px-xl-5 py-5 mx-auto" style="width: 80%;">
+                        <div class="card card0 border-0">
+                          <div class="row d-flex">
+                              <div class="col-lg-6 margin-left: 45px;">
+                                  <div class="card1 pb-5" style="background-image: url('assets/dist/img/logocifod.jpg');
+                                  background-repeat: no-repeat;
+                                  background-size: 100% 100%;
+                                  margin-left: 5px;
+                                    background-position: left; margin-top: 10px;height:500px;">
+                <div class="row px-3 justify-content-center mt-4 mb-5 border-line">  </div>
+            </div>
+        </div>
+        <div class="login-box" style="width: 45%;margin-left: 45px;">
+          <!-- /.login-logo -->
+          <div class="card2 card-transparent px-4 py-3" style=" border-left: 2px solid #e9ecef;margin-top: 90px;">
+    
+    <div class="card-header text-center">
+      <a href="{{ path("login") }}" class="h1"><b></b></a>
+    </div>
+    {% block body %} {% endblock %}
+
+    <hr>
+    <footer>
+      {#   <p style="text-align: center">© Stack 2021</p> #}
+    </footer>
+  </div>
+  <!-- /.card -->
+</div></div>
+<div class="py-2" style="color: #869099; margin-left: 25%;">
+  <div class="row px-3"><small> <b>Copyright &copy; Developped By <span style="color: #007bff;">Aboubacar Adamou</span> .</b></small>
+      <div class="social-contact ml-4 ml-sm-auto"> </div>
+  </div>
+</div>
+</div></div>
+<!-- /.login-box -->
+
+<!-- jQuery -->
+<script src="{{ asset('plugins/jquery/jquery.min.js') }}"></script>
+<!-- Bootstrap 4 -->
+<script src="{{ asset('plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+<!-- AdminLTE App -->
+<script src="{{ asset('dist/js/adminlte.min.js') }}"></script>
+</body>
+</html>

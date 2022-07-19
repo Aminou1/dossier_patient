@@ -1,0 +1,150 @@
+{% extends 'layout_main.html.twig' %}
+{% block content %}
+{% block autresfichierscss %}
+ 
+{% endblock %}
+  <section class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-6">
+			 {% if classe is defined %}
+			<div class="{{classe}}">{{resultat}}</div>
+		    {% endif %}
+          </div>
+          <div class="col-sm-6">
+            <ol class="breadcrumb float-sm-right">
+              <li class="breadcrumb-item"><a href="{{ path('menu') }}">Accueil</a></li>
+              <li class="breadcrumb-item active">Utilisateur</li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </section>
+	
+	  <section class="content-header">
+    <div class="container-fluid">
+        <div class="row">
+		<div class="col-12">
+			<div class="card">
+				<div class="card-header">
+					 <h3 class="card-title">Tableau de liste des utilisateurs</h3>
+					<div class="card-tools">
+					{%if is_granted(role_admin) %}
+						<div class="input-group input-group-sm">
+							<a class="btn btn-success btn-sm ml-3" href="{{ path('newuser') }}">
+								<i class="fa fa-plus"></i>
+								Ajouter un utilisateur
+							   <span class="fi-lock-unlocked"></span>
+							</a>
+						</div>
+					{%endif%}
+					{%if is_granted(role_seretaire) %}
+						<div class="input-group input-group-sm">
+							<a class="btn btn-success btn-sm ml-3" href="{{ path('newuser') }}">
+								<i class="fa fa-plus"></i>
+								Ajouter un patient
+							   <span class="fi-lock-unlocked"></span>
+							</a>
+						</div>
+					{%endif%}
+					</div>
+				</div>
+				<!-- /.card-header -->
+				<div class="card-body table-responsive p-0">
+                <table id="liste" class="table table-bordered table-striped">
+						<thead>
+							<tr>
+                               <th>Nom & Prénom</th>
+								<th>Téléphone</th>
+								<th>Addresse</th>
+								<th>Role utilisateur</th>
+								<th>Actions</th>
+							</tr>
+						</thead>
+						<tbody>
+									{% for liste in users %}
+									{% if liste.roles[0] == "ROLE_SECRETAIRE" %}
+										<tr>
+											<td>{{ liste.nom }}  {{ liste.prenom }}</td>
+											<td>{{ liste.telephone }}</td>
+											<td>{{ liste.addresse }}</td>
+								 			<td>{{ liste.utilisateur.libellestypeUtilisat }}</td>
+								    	<td>
+										{% if liste.enabled == 1 %}
+											<a class="btn btn-info btn-sm" href="{{ path('user_edit', {id: liste.id}) }}" onclick="return confirm('Etes-vous sûr de vouloir modifier utilisateur ?') ">
+												<i class="fa fa-edit"></i>
+                            					<span class="sr-only"></span>
+											</a>
+										{% endif%}
+
+										{% if liste.enabled == 0 %}
+										<a class="btn btn-success btn-sm" href="{{ path('enabled_user', {id: liste.id}) }}" onclick="return confirm('Etes-vous sûr de vouloir activer cet utilisateur ?')">
+										<i class="fa fa-unlock"> </i>
+										 <span class="sr-only"></span>
+										</a>
+										{% endif%}
+
+										{% if liste.enabled == 1 %}
+										<a class="btn btn-danger btn-sm" href="{{ path('desabled_user', {id: liste.id}) }}" onclick="return confirm('Etes-vous sûr de vouloir desactiver cet utilisateur ?')">
+										 <i class="fa fa-trash"></i>
+                        				  <span class="sr-only"></span>
+										</a> 
+										{% endif%}
+									</td>
+								</tr>
+								{% endif %}
+							{% endfor %}
+						</tbody>
+					</table>
+				</div>
+				<!-- /.card-body -->
+			</div>
+			<!-- /.card -->
+		</div>
+	</div>
+{% endblock %}
+{% block autresFichiersJs %}
+<!-- jQuery -->
+<script src="{{ asset('plugins/jquery/jquery.min.js') }}"></script>
+<!-- Bootstrap 4 -->
+<script src="{{ asset('plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+<!-- DataTables  & Plugins -->
+<script src="{{ asset('plugins/datatables/jquery.dataTables.min.js') }}"></script>
+<script src="{{ asset('plugins/datatables-bs4/js/dataTables.bootstrap4.min.js') }}"></script>
+<script src="{{ asset('plugins/datatables-responsive/js/dataTables.responsive.min.js') }}"></script>
+<script src="{{ asset('plugins/datatables-responsive/js/responsive.bootstrap4.min.js') }}"></script>
+<script src="{{ asset('plugins/datatables-buttons/js/dataTables.buttons.min.js') }}"></script>
+<script src="{{ asset('plugins/datatables-buttons/js/buttons.bootstrap4.min.js') }}"></script>
+<script src="{{ asset('plugins/jszip/jszip.min.js') }}"></script>
+<script src="{{ asset('plugins/pdfmake/pdfmake.min.js') }}"></script>
+<script src="{{ asset('plugins/pdfmake/vfs_fonts.js') }}"></script>
+<script src="{{ asset('plugins/datatables-buttons/js/buttons.html5.min.js') }}"></script>
+<script src="{{ asset('plugins/datatables-buttons/js/buttons.print.min.js') }}"></script>
+<script src="{{ asset('plugins/datatables-buttons/js/buttons.colVis.min.js') }}"></script>
+<!-- AdminLTE App -->
+<script src="{{ asset('dist/js/adminlte.min.js') }}"></script>
+<!-- AdminLTE for demo purposes -->
+<script src="{{ asset('dist/js/demo.js') }}"></script>
+<!-- Page specific script -->
+<script>
+  $(function () {
+    $("#liste").DataTable({
+      "responsive": true,"aaSorting": [[0, "desc"]],oLanguage: {
+		sSearch: "Rechercher : ",
+		sZeroRecords: "Aucune valeur trouvée",
+		sInfo: "Afficher page _PAGE_ sur _PAGES_",
+		sInfoFiltered: "(Filtres sur _MAX_ )",
+		sInfoEmpty: "",
+		oPaginate: {
+		sFirst: "Premier",
+		sPrevious: "Pr&eacute;c&eacute;dent",
+		sNext: "Suivant",
+		sLast: "Dernier"
+		}
+		}, "lengthChange": false, "autoWidth": false,
+      "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
+    }).buttons().container().appendTo('#liste_wrapper .col-md-6:eq(0)');
+    
+  });
+</script>
+  {% endblock %}
